@@ -102,14 +102,28 @@ function Home() {
         return false
     }
 
+    const tear11 = (s: string): boolean => {
+        const tokens = tokenize(s)
+        return tokens[0] === tokens[4] && tokens[1] === tokens[3];
+
+    }
+
     const processInput = (text: string) => {
         let roleText: string;
         let scoreText: string;
 
         if (text == "ふらんちゃん") {
+            /**
+             * 確率:1/781.25（1000万回試行結果）
+             */
+
             roleText = "ふらんちゃん";
             scoreText = "5,000,000";
         } else if (text == "んちゃんらふ") {
+            /**
+             * 確率実測値:1/781.25（1000万回試行結果）
+             */
+
             roleText = "逆から読んでも";
             scoreText = "25,000";
         } else {
@@ -117,36 +131,76 @@ function Home() {
             roleText = "役なし";
             let score = 0;
             if (tear3(text)) {
+                /**
+                 * 確率:1/13.02（1000万回試行結果）
+                 */
+
                 roles.push("順不同明王")
                 score += 5;
             }
             if (tear4(text)) {
+                /**
+                 * 確率:1/91.93（1000万回試行結果）
+                 */
+
                 roles.push("満場一致");
                 score += 3;
             }
             if (tear5(text)) {
+                /**
+                 * 確率:1/62.46（1000万回試行結果）
+                 */
+
                 roles.push("上の句揃え");
                 score += 2;
             }
             if (tear6(text)) {
+                /**
+                 * 確率:1/12.50（1000万回試行結果）
+                 */
+
                 roles.push("下の句揃え");
                 score += 2;
             }
             if (tear7(text)) {
+                /**
+                 * 確率:1/20.83（1000万回試行結果）
+                 */
+
                 roles.push("ロケットランチャー");
                 score += 2;
             }
             if (tear8(text)) {
+                /**
+                 * 確率:1/78.16（1000万回試行結果）
+                 */
+
                 roles.push("出荷よ(´・ω・`)");
                 score += 2;
             }
             if (tear9(text)) {
+                /**
+                 * 確率:1/20.84（1000万回試行結果）
+                 */
+
                 roles.push("一心ふらん");
                 score += 1;
             }
             if (tear10(text)) {
+                /**
+                 * 確率:1/3.32（1000万回試行結果）
+                 */
+
                 roles.push("ワンちゃんある");
                 score += 1;
+            }
+            if (tear11(text)) {
+                /**
+                 * 確率:1/12.75（1000万回試行結果）
+                 */
+
+                roles.push("パーソナルミラー");
+                score += 3;
             }
             if (roles.length > 0) {
                 roleText = roles.join("\n");

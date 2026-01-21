@@ -9,6 +9,7 @@ type PointCardProps = {
     title: string
     description?: string
     points?: number | string
+    probability: number
     defaultCollapsed?: boolean
 }
 
@@ -20,60 +21,77 @@ function PointTable() {
                 <PointCard
                     title={'ふらんちゃん：単独役'}
                     description={'「ふらんちゃん」の並びになっている'}
+                    probability={781.25}
                     points={'5,000,000'}
                     defaultCollapsed={true}
                 />
                 <PointCard
                     title={'逆から読んでも：単独役'}
                     description={'「んちゃんらふ」の並びになっている'}
+                    probability={781.25}
                     points={'25,000'}
                     defaultCollapsed={true}
                 />
                 <PointCard
                     title={'順不同明王：複合役'}
                     description={'「ふ」「ら」「ちゃ」が1つずつ、「ん」が2つ入っている'}
+                    probability={13.02}
                     points={'5'}
                     defaultCollapsed={true}
                 />
                 <PointCard
                     title={'満場一致：複合役'}
                     description={'5文字全てがいずれか1種類の文字'}
+                    probability={91.93}
+                    points={'3'}
+                    defaultCollapsed={true}
+                />
+                <PointCard
+                    title={'パーソナルミラー：複合役'}
+                    description={'1文字目と5文字目、2文字目と4文字目が同じ文字'}
+                    probability={12.75}
                     points={'3'}
                     defaultCollapsed={true}
                 />
                 <PointCard
                     title={'上の句揃え：複合役'}
                     description={'「ふらん」から始まる'}
+                    probability={62.46}
                     points={'2'}
                     defaultCollapsed={true}
                 />
                 <PointCard
                     title={'下の句揃え：複合役'}
                     description={'「ちゃん」で終わる'}
+                    probability={12.50}
                     points={'2'}
                     defaultCollapsed={true}
                 />
                 <PointCard
                     title={'ロケットランチャー：複合役'}
                     description={'「らんちゃ」が入っている'}
+                    probability={20.83}
                     points={'2'}
                     defaultCollapsed={true}
                 />
                 <PointCard
                     title={'出荷よ(´・ω・`)：複合役'}
                     description={'「らんらん」が入っている'}
+                    probability={78.16}
                     points={'2'}
                     defaultCollapsed={true}
                 />
                 <PointCard
                     title={'一心ふらん：複合役'}
                     description={'「ふらん」が入っている'}
+                    probability={20.84}
                     points={'1'}
                     defaultCollapsed={true}
                 />
                 <PointCard
                     title={'ワンちゃんある：複合役'}
                     description={'「ちゃん」が入っている'}
+                    probability={3.32}
                     points={'1'}
                     defaultCollapsed={true}
                 />
@@ -82,7 +100,7 @@ function PointTable() {
     )
 }
 
-function PointCard({title, description, points, defaultCollapsed = true}: PointCardProps) {
+function PointCard({title, description, points, probability, defaultCollapsed = true}: PointCardProps) {
     const [collapsed, setCollapsed] = useState<boolean>(defaultCollapsed)
 
     return (
@@ -109,7 +127,7 @@ function PointCard({title, description, points, defaultCollapsed = true}: PointC
                     )}
                     {!collapsed && points !== undefined && (
                         <footer className="card-footer">
-                            <p className="card-footer-item">{points}点</p>
+                            <p className="card-footer-item">{points}点（1/{probability}）</p>
                         </footer>
                     )}
                 </div>
