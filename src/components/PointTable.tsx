@@ -153,9 +153,12 @@ function PointCard({title, description, points, probability, defaultCollapsed = 
                             <div className="content">{description}</div>
                         </div>
                     )}
-                    {!collapsed && points !== undefined && probability > 0 && (
+                    {!collapsed && points !== undefined && (
                         <footer className="card-footer">
-                            <p className="card-footer-item">{points}点（1/{probability}）</p>
+                            <p className="card-footer-item">
+                                {points}点
+                                {probability > 0 && (<>（1/{probability}）</>)}
+                            </p>
                         </footer>
                     )}
                 </div>
