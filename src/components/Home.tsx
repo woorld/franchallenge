@@ -108,6 +108,45 @@ function Home() {
 
     }
 
+    const tear12 = (s: string): boolean => {
+        const tokens = tokenize(s)
+        for (let i = 0; i <= tokens.length - 2; i++) {
+            if (tokens[i] === 'ちゃ' && tokens[i + 1] === 'ふ') {
+                return true
+            }
+        }
+        return false
+    }
+
+    const tear13 = (s: string): boolean => {
+        const tokens = tokenize(s)
+        for (let i = 0; i <= tokens.length - 4; i++) {
+            if (tokens[i] === 'ちゃ' && tokens[i + 1] === 'ふ' && tokens[i + 2] === 'ら' && tokens[i + 3] === 'ん') {
+                return true
+            }
+        }
+        return false
+    }
+
+    const tear14 = (s: string): boolean => {
+        const tokens = tokenize(s)
+        for (let i = 0; i <= tokens.length - 3; i++) {
+            if (tokens[i] === 'ちゃ' && tokens[i + 1] === 'ら' && tokens[i + 2] === 'ん') {
+                return true
+            }
+        }
+        return false
+    }
+
+    const tear15 = (s: string): boolean => {
+        const tokens = tokenize(s)
+        if (tear6(s)) {
+            const allowed = new Set(['ふ', 'ら', 'ん'])
+            return allowed.has(tokens[0]) && allowed.has(tokens[1]) && allowed.has(tokens[2])
+        }
+        return false
+    }
+
     const processInput = (text: string) => {
         let roleText: string;
         let scoreText: string;
@@ -202,6 +241,39 @@ function Home() {
                 roles.push("パーソナルミラー");
                 score += 3;
             }
+            if (tear12(text)) {
+                /**
+                 *
+                 */
+
+                roles.push("ちゃふ台返し");
+                score += 1;
+            }
+            if (tear13(text)) {
+                /**
+                 *
+                 */
+
+                roles.push("新種の果実、ちゃふらんす")
+                score += 5;
+            }
+            if (tear14(text)) {
+                /**
+                 *
+                 */
+
+                roles.push("ちゃらんぷらん")
+                score += 2;
+            }
+            if (tear15(text)) {
+                /**
+                 *
+                 */
+
+                roles.push("誰よその女！")
+                score += 3;
+            }
+
             if (roles.length > 0) {
                 roleText = roles.join("\n");
             }
