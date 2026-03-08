@@ -40,6 +40,13 @@ function PointTable() {
                     defaultCollapsed={true}
                 />
                 <PointCard
+                    title={'新種の果実、ちゃふらんす：複合役'}
+                    description={'「ちゃふらん」が入っている'}
+                    probability={0}
+                    points={'5'}
+                    defaultCollapsed={true}
+                />
+                <PointCard
                     title={'満場一致：複合役'}
                     description={'5文字全てがいずれか1種類の文字'}
                     probability={91.93}
@@ -50,6 +57,13 @@ function PointTable() {
                     title={'パーソナルミラー：複合役'}
                     description={'1文字目と5文字目、2文字目と4文字目が同じ文字'}
                     probability={12.75}
+                    points={'3'}
+                    defaultCollapsed={true}
+                />
+                <PointCard
+                    title={'誰よその女！：複合役'}
+                    description={'先頭3文字が「ふ」「ら」「ん」のいずれか、かつ「ちゃん」で終わる'}
+                    probability={0}
                     points={'3'}
                     defaultCollapsed={true}
                 />
@@ -82,6 +96,13 @@ function PointTable() {
                     defaultCollapsed={true}
                 />
                 <PointCard
+                    title={'ちゃらんぷらん：複合役'}
+                    description={'「ちゃらん」が入っている'}
+                    probability={0}
+                    points={'2'}
+                    defaultCollapsed={true}
+                />
+                <PointCard
                     title={'一心ふらん：複合役'}
                     description={'「ふらん」が入っている'}
                     probability={20.84}
@@ -92,6 +113,13 @@ function PointTable() {
                     title={'ワンちゃんある：複合役'}
                     description={'「ちゃん」が入っている'}
                     probability={3.32}
+                    points={'1'}
+                    defaultCollapsed={true}
+                />
+                <PointCard
+                    title={'ちゃふ台返し：複合役'}
+                    description={'「ちゃふ」が入っている'}
+                    probability={0}
                     points={'1'}
                     defaultCollapsed={true}
                 />
@@ -125,7 +153,7 @@ function PointCard({title, description, points, probability, defaultCollapsed = 
                             <div className="content">{description}</div>
                         </div>
                     )}
-                    {!collapsed && points !== undefined && (
+                    {!collapsed && points !== undefined && probability > 0 && (
                         <footer className="card-footer">
                             <p className="card-footer-item">{points}点（1/{probability}）</p>
                         </footer>
