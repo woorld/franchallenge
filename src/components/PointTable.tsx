@@ -123,6 +123,13 @@ function PointTable() {
                     points={'1'}
                     defaultCollapsed={true}
                 />
+                <PointCard
+                    title={'ふんふん太郎：複合役'}
+                    description={'「ふんふん」が入っている'}
+                    probability={0}
+                    points={'3'}
+                    defaultCollapsed={true}
+                />
             </div>
         </>
     )

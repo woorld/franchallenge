@@ -147,6 +147,16 @@ function Home() {
         return false
     }
 
+    const tear16 = (s: string): boolean => {
+        const tokens = tokenize(s)
+        for (let i = 0; i <= tokens.length - 3; i++) {
+            if (tokens[i] === 'ふ' && tokens[i + 1] === 'ん' && tokens[i + 2] === 'ふ' && tokens[i + 3] === 'ん') {
+                return true
+            }
+        }
+        return false
+    }
+
     const processInput = (text: string) => {
         let roleText: string;
         let scoreText: string;
@@ -271,6 +281,15 @@ function Home() {
                  */
 
                 roles.push("誰よその女！")
+                score += 3;
+            }
+
+            if (tear16(text)) {
+                /**
+                 *
+                 */
+
+                roles.push("ふんふん太郎")
                 score += 3;
             }
 
