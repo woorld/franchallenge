@@ -1,5 +1,5 @@
-import type { FranChallengeHand } from './util/types'
-import * as judge from './util/judge'
+import type { FranChallengeHand } from './types'
+import * as judge from './judge'
 
 export const franChallengeHands: FranChallengeHand[] = [
   {
