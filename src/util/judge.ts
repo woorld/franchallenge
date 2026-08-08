@@ -1,9 +1,4 @@
-import type { FranChallengeToken, FranChallengeString } from '../constants'
-
-type FranChallengeStringFragment
-  = `${FranChallengeToken}${FranChallengeToken}`
-  | `${FranChallengeToken}${FranChallengeToken}${FranChallengeToken}`
-  | `${FranChallengeToken}${FranChallengeToken}${FranChallengeToken}${FranChallengeToken}`
+import type { FranChallengeToken, FranChallengeString, FranChallengeStringFragment, PokerHand } from './types'
 
 const franChallengeTokens: FranChallengeToken[] = ['ふ', 'ら', 'ん', 'ちゃ'] as const
 
@@ -32,8 +27,6 @@ export const dareyoSonoOnna = (tokens: FranChallengeToken[]) => {
   const allowed: FranChallengeToken[] = franChallengeTokens.filter(t => t !== 'ちゃ')
   return allowed.includes(tokens[0]) && allowed.includes(tokens[1]) && allowed.includes(tokens[2])
 }
-
-type PokerHand = 'ONE_PAIR' | 'TWO_PAIR' | 'THREE_OF_A_KIND' | 'FOUR_OF_A_KIND' | 'FULL_HOUSE'
 
 const judgePokerHands = (tokens: FranChallengeToken[]) => {
   // 1番目、2番目に多いトークンを求める

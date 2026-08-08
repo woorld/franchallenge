@@ -3,7 +3,7 @@ import {useState} from 'react'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faAngleDown} from "@fortawesome/free-solid-svg-icons"
 import {faAngleUp} from "@fortawesome/free-solid-svg-icons"
-import type { FranChallengeHand } from "../constants"
+import type { FranChallengeHand } from "../util/types"
 
 type Props = Omit<FranChallengeHand, 'judgeFunction'> & { defaultCollapsed?: boolean }
 
