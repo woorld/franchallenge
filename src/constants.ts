@@ -1,3 +1,8 @@
+import * as judge from './util/judge'
+
+export type FranChallengeToken = 'ふ' | 'ら' | 'ん' | 'ちゃ'
+export type FranChallengeString = `${FranChallengeToken}${FranChallengeToken}${FranChallengeToken}${FranChallengeToken}${FranChallengeToken}`
+
 export type FranChallengeHand = {
   name: string,
   description: string,
@@ -5,6 +10,7 @@ export type FranChallengeHand = {
   probability?: number,
   canComposite: boolean,
   isPokerHand: boolean,
+  judgeFunction: (tokens: FranChallengeToken[]) => boolean,
 }
 
 export const franChallengeHands: FranChallengeHand[] = [
@@ -15,6 +21,7 @@ export const franChallengeHands: FranChallengeHand[] = [
     points: 5000000,
     canComposite: false,
     isPokerHand: false,
+    judgeFunction: judge.equalsTo('ふらんちゃん'),
   },
   {
     name: '逆から読んでも',
@@ -23,6 +30,7 @@ export const franChallengeHands: FranChallengeHand[] = [
     points: 25000,
     canComposite: false,
     isPokerHand: false,
+    judgeFunction: judge.equalsTo('んちゃんらふ'),
   },
   {
     name: '順不同明王',
@@ -31,6 +39,7 @@ export const franChallengeHands: FranChallengeHand[] = [
     points: 5,
     canComposite: true,
     isPokerHand: false,
+    judgeFunction: judge.junfudouMyouou,
   },
   {
     name: '新種の果実、ちゃふらんす',
@@ -38,6 +47,7 @@ export const franChallengeHands: FranChallengeHand[] = [
     points: 5,
     canComposite: true,
     isPokerHand: false,
+    judgeFunction: judge.includes('ちゃふらん'),
   },
   {
     name: '満場一致',
@@ -46,6 +56,7 @@ export const franChallengeHands: FranChallengeHand[] = [
     points: 3,
     canComposite: true,
     isPokerHand: false,
+    judgeFunction: judge.manjouIcchi,
   },
   {
     name: 'パーソナルミラー',
@@ -54,6 +65,7 @@ export const franChallengeHands: FranChallengeHand[] = [
     points: 3,
     canComposite: true,
     isPokerHand: false,
+    judgeFunction: judge.personalMirror,
   },
   {
     name: '誰よその女！',
@@ -61,6 +73,7 @@ export const franChallengeHands: FranChallengeHand[] = [
     points: 3,
     canComposite: true,
     isPokerHand: false,
+    judgeFunction: judge.dareyoSonoOnna,
   },
   {
     name: '4と鳴く犬',
@@ -68,6 +81,7 @@ export const franChallengeHands: FranChallengeHand[] = [
     points: 3,
     canComposite: true,
     isPokerHand: true,
+    judgeFunction: judge.fourToNakuInu,
   },
   {
     name: 'ふらハウス',
@@ -75,6 +89,7 @@ export const franChallengeHands: FranChallengeHand[] = [
     points: 3,
     canComposite: true,
     isPokerHand: true,
+    judgeFunction: judge.furaHouse,
   },
   {
     name: '上の句揃え',
@@ -83,6 +98,7 @@ export const franChallengeHands: FranChallengeHand[] = [
     points: 2,
     canComposite: true,
     isPokerHand: false,
+    judgeFunction: judge.kaminokuZoroe,
   },
   {
     name: '下の句揃え',
@@ -91,6 +107,7 @@ export const franChallengeHands: FranChallengeHand[] = [
     points: 2,
     canComposite: true,
     isPokerHand: false,
+    judgeFunction: judge.shimonokuZoroe,
   },
   {
     name: 'ロケットランチャー',
@@ -99,6 +116,7 @@ export const franChallengeHands: FranChallengeHand[] = [
     points: 2,
     canComposite: true,
     isPokerHand: false,
+    judgeFunction: judge.includes('らんちゃ'),
   },
   {
     name: '出荷よ(´・ω・`)',
@@ -107,6 +125,7 @@ export const franChallengeHands: FranChallengeHand[] = [
     points: 2,
     canComposite: true,
     isPokerHand: false,
+    judgeFunction: judge.includes('らんらん'),
   },
   {
     name: 'ちゃらんぷらん',
@@ -114,6 +133,7 @@ export const franChallengeHands: FranChallengeHand[] = [
     points: 2,
     canComposite: true,
     isPokerHand: false,
+    judgeFunction: judge.includes('ちゃらん'),
   },
   {
     name: 'ふ2（りゃん）ちゃん',
@@ -121,6 +141,7 @@ export const franChallengeHands: FranChallengeHand[] = [
     points: 2,
     canComposite: true,
     isPokerHand: true,
+    judgeFunction: judge.fuRyanChan,
   },
   {
     name: 'デコ助野郎',
@@ -128,6 +149,7 @@ export const franChallengeHands: FranChallengeHand[] = [
     points: 2,
     canComposite: true,
     isPokerHand: true,
+    judgeFunction: judge.dekosukeYarou,
   },
   {
     name: '一心ふらん',
@@ -136,6 +158,7 @@ export const franChallengeHands: FranChallengeHand[] = [
     points: 1,
     canComposite: true,
     isPokerHand: false,
+    judgeFunction: judge.includes('ふらん'),
   },
   {
     name: 'ワンちゃんある',
@@ -144,6 +167,7 @@ export const franChallengeHands: FranChallengeHand[] = [
     points: 1,
     canComposite: true,
     isPokerHand: false,
+    judgeFunction: judge.includes('ちゃん'),
   },
   {
     name: 'ちゃふ台返し',
@@ -151,6 +175,7 @@ export const franChallengeHands: FranChallengeHand[] = [
     points: 1,
     canComposite: true,
     isPokerHand: false,
+    judgeFunction: judge.includes('ちゃふ'),
   },
   {
     name: 'ふ1（ワン）ちゃん',
@@ -158,5 +183,6 @@ export const franChallengeHands: FranChallengeHand[] = [
     points: 2,
     canComposite: true,
     isPokerHand: true,
+    judgeFunction: judge.fuOneChan,
   },
 ] as const

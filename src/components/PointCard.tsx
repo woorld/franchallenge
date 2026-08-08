@@ -5,7 +5,7 @@ import {faAngleDown} from "@fortawesome/free-solid-svg-icons"
 import {faAngleUp} from "@fortawesome/free-solid-svg-icons"
 import type { FranChallengeHand } from "../constants"
 
-type Props = FranChallengeHand & { defaultCollapsed?: boolean }
+type Props = Omit<FranChallengeHand, 'judgeFunction'> & { defaultCollapsed?: boolean }
 
 export default function PointCard({
   name,
