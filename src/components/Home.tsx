@@ -1,23 +1,36 @@
 import 'bulma/css/bulma.css'
 import {useState, type ChangeEvent} from 'react'
+import type { FranChallengeToken } from '../util/types'
+import { franChallengeTokens } from '../util/judge'
 
-function Home() {
+export default function Home() {
   const [inputText, setInputText] = useState('')
   const [role, setRole] = useState('')
   const [score, setScore] = useState('')
   const [isJudged, setIsJudged] = useState(false)
 
-  const tokenize = (s: string): string[] => {
-    const tokens: string[] = []
+  const isFranChallengeToken = (t: string): t is FranChallengeToken =>
+    (franChallengeTokens as readonly string[]).includes(t)
+
+  const tokenize = (s: string): FranChallengeToken[] => {
+    const tokens: FranChallengeToken[] = []
+
     for (let i = 0; i < s.length;) {
       if (s.slice(i, i + 2) === 'ちゃ') {
         tokens.push('ちゃ')
         i += 2
-      } else {
-        tokens.push(s[i])
-        i += 1
+        continue
       }
+
+      const tokenWithoutCha = s[i]
+      if (!isFranChallengeToken(tokenWithoutCha)) {
+        return []
+      }
+
+      tokens.push(tokenWithoutCha)
+      i += 1
     }
+
     return tokens
   }
 
@@ -191,6 +204,15 @@ function Home() {
   }
 
   const processInput = (text: string) => {
+    const tokens = tokenize(inputText)
+
+    if (tokens.length <= 0 || tokens.length >= 6) {
+      setRole('役なし')
+      setScore('点数：0点')
+      setIsJudged(true)
+      return
+    }
+
     let roleText: string;
     let scoreText: string;
 
@@ -425,5 +447,3 @@ function Home() {
     </>
   )
 }
-
-export default Home
