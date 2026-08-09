@@ -64,6 +64,22 @@ export const franChallengeHands: FranChallengeHand[] = [
     judgeFunction: judge.dareyoSonoOnna,
   },
   {
+    name: 'ふんふん太郎',
+    description: '「ふんふん」が入っている',
+    points: 3,
+    canComposite: true,
+    isPokerHand: false,
+    judgeFunction: judge.includes('ふんふん'),
+  },
+  {
+    name: 'ふらん未遂',
+    description: '「ふらんちゃん」と1文字違い',
+    points: 3,
+    canComposite: true,
+    isPokerHand: false,
+    judgeFunction: judge.franMisui,
+  },
+  {
     name: '4と鳴く犬',
     description: '同じ文字が4つ入っている',
     points: 3,
@@ -124,6 +140,14 @@ export const franChallengeHands: FranChallengeHand[] = [
     judgeFunction: judge.includes('ちゃらん'),
   },
   {
+    name: 'おもちゃのちゃちゃちゃ',
+    description: '「ちゃちゃちゃ」が入っている',
+    points: 2,
+    canComposite: true,
+    isPokerHand: false,
+    judgeFunction: judge.includes('ちゃちゃちゃ'),
+  },
+  {
     name: 'ふ2（りゃん）ちゃん',
     description: '同じ文字のペアが2つ入っている',
     points: 2,
@@ -168,7 +192,7 @@ export const franChallengeHands: FranChallengeHand[] = [
   {
     name: 'ふ1（ワン）ちゃん',
     description: '同じ文字のペアが1つ入っている',
-    points: 2,
+    points: 1,
     canComposite: true,
     isPokerHand: true,
     judgeFunction: judge.fuOneChan,

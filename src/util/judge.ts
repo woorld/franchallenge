@@ -29,6 +29,11 @@ export const dareyoSonoOnna = (tokens: FranChallengeToken[]) => {
   return allowed.includes(tokens[0]) && allowed.includes(tokens[1]) && allowed.includes(tokens[2])
 }
 
+export const franMisui = (tokens: FranChallengeToken[]) => {
+  const correctTokens = ['ふ', 'ら', 'ん', 'ちゃ', 'ん'] as const
+  return tokens.filter((token, i) => token === correctTokens[i]).length === 4
+}
+
 const judgePokerHands = (tokens: FranChallengeToken[]) => {
   // 1番目、2番目に多いトークンを求める
   const tokenCounts = tokens.reduce<Partial<Record<FranChallengeToken, number>>>((acc, cur) => {
