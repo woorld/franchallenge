@@ -40,7 +40,7 @@ export default function Home() {
   const processInput = () => {
     const tokens = tokenize(inputText)
 
-    if (tokens.length <= 0 || tokens.length >= 6) {
+    if (tokens.length !== 5) {
       setRole('役なし')
       setScore(0)
       setIsJudged(true)
